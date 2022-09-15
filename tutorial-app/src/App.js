@@ -29,6 +29,7 @@ const App = () => {
     //Add expenses to the state
     const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
+    // Add item to the list
     const addExpenseHandler = (expense) => {
         setExpenses(prevExpenses => {
             return [expense, ...prevExpenses];
