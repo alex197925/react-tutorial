@@ -7,7 +7,7 @@ import {useState} from "react";
 
 const Expenses = (props) => {
 
-    const [year, setYear] = useState("2020");
+    const [year, setYear] = useState("2019");
 
 
     //Passing selected year with selectedYear parameter
@@ -17,12 +17,21 @@ const Expenses = (props) => {
         console.log(selectedYear);
     }
 
+    // Selected all items,
+    const filteredExpenses = props.items.filter(expense => {
+        //Returning expense date with full year and converting to string
+        return expense.date.getFullYear().toString() === year;
+    })
+    // console.log(filteredExpenses);
+
     return (
         <div>
             <Card className="expenses">
-                <ExpensesFilter selected={year} onselectYear={filterChangeHandler}/>
-                {/*Map through all items-expenses and create ExpensesItem component*/}
-                {props.items.map((expense) => <ExpenseItem title={expense.title} date={expense.date}
+                <ExpensesFilter
+                    selected={year}
+                    onselectYear={filterChangeHandler}/>
+                {/*Filtering through all items-expenses and displaying product by year*/}
+                {filteredExpenses.map((expense) => <ExpenseItem title={expense.title} date={expense.date}
                                                            amount={expense.amount} key={expense.id}/>)}
 
             </Card>
