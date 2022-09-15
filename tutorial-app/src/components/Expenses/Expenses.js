@@ -24,19 +24,29 @@ const Expenses = (props) => {
     })
     // console.log(filteredExpenses);
 
+
+    // Conditional Content Output. Check, if expenses not found display "Not item found" message
+    let expensesContent = <p>Not item found.</p>
+    if (filteredExpenses.length > 0) {
+        expensesContent = filteredExpenses.map((expense) =>
+                <ExpenseItem
+                    title={expense.title}
+                    date={expense.date}
+                    amount={expense.amount}
+                    key={expense.id}
+                />
+        )
+    }
+
     return (
         <div>
             <Card className="expenses">
                 <ExpensesFilter
                     selected={year}
                     onselectYear={filterChangeHandler}/>
-                {/*Filtering through all items-expenses and displaying product by year*/}
-                {filteredExpenses.map((expense) => <ExpenseItem title={expense.title} date={expense.date}
-                                                           amount={expense.amount} key={expense.id}/>)}
-
+                {expensesContent}
             </Card>
         </div>
-
     );
 }
 
