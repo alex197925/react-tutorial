@@ -1,8 +1,10 @@
-import ExpenseItem from "./ExpenseItem";
+
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "../ExpensesFilter";
 import {useState} from "react";
+import expensesList from "./ExpensesList";
+import ExpensesList from "./ExpensesList";
 
 
 const Expenses = (props) => {
@@ -14,7 +16,7 @@ const Expenses = (props) => {
     const filterChangeHandler = (selectedYear) => {
         setYear(selectedYear);
         // console.log("Expenses.js");
-        console.log(selectedYear);
+        // console.log(selectedYear);
     }
 
     // Selected all items,
@@ -25,18 +27,6 @@ const Expenses = (props) => {
     // console.log(filteredExpenses);
 
 
-    // Conditional Content Output. Check, if expenses not found display "Not item found" message
-    let expensesContent = <p>Not item found.</p>
-    if (filteredExpenses.length > 0) {
-        expensesContent = filteredExpenses.map((expense) =>
-                <ExpenseItem
-                    title={expense.title}
-                    date={expense.date}
-                    amount={expense.amount}
-                    key={expense.id}
-                />
-        )
-    }
 
     return (
         <div>
@@ -44,7 +34,7 @@ const Expenses = (props) => {
                 <ExpensesFilter
                     selected={year}
                     onselectYear={filterChangeHandler}/>
-                {expensesContent}
+               <ExpensesList items={filteredExpenses}/>
             </Card>
         </div>
     );
