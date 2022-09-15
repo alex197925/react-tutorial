@@ -8,13 +8,14 @@ const NewExpense = (props) => {
 
     const [showForm, setShowForm] = useState(false);
 
-
 // Show form when you click button "Add new expenses
     const showFormHandler = () => {
         setShowForm(true);
     }
 
-
+    const stopEditingHandler = () => {
+        setShowForm(false);
+    }
 
 
     const saveExpenseDataHandler = (enteredExpenseData) => {
@@ -23,6 +24,7 @@ const NewExpense = (props) => {
             id: Math.random().toString()
         }
         props.onAddExpense(expenseData);
+        setShowForm(false);
     }
 
 
@@ -31,8 +33,7 @@ const NewExpense = (props) => {
             {/*Showing button and not form*/}
             {!showForm && <button onClick={showFormHandler}>Add New Expense</button>}
             {/*Showing form and not button*/}
-            {showForm && (<ExpenseForm onSaveExpenseData={saveExpenseDataHandler}/>)}
-
+            {showForm && (<ExpenseForm onSaveExpenseData={saveExpenseDataHandler} onCancel={stopEditingHandler}/>)}
         </div>
     );
 };

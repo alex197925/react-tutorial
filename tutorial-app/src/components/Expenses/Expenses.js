@@ -3,7 +3,6 @@ import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "../ExpensesFilter";
 import {useState} from "react";
-import expensesList from "./ExpensesList";
 import ExpensesList from "./ExpensesList";
 
 
